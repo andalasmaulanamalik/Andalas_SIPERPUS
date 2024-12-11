@@ -30,9 +30,6 @@
                         <x-nav-link :href="route('book')" :active="request()->routeIs('book') || request()->routeIs('book.create')">
                             {{ __('Buku') }}
                         </x-nav-link>
-                        <x-nav-link>
-                            {{ __('Peminjaman') }}
-                        </x-nav-link>
                     @endhasrole 
                     <!-- <x-nav-link :href="route('book')" :active="request()->routeIs('book') || request()->routeIs('book.create')">
                         {{ __('Book') }}

@@ -11,11 +11,9 @@ class ReturnController extends Controller
 {
     public function index()
     {
-        // Ambil semua data pengembalian
-        $returns = BookReturn::with(['loanDetail.loan', 'loanDetail.book'])->get();
+        $loanDetails = LoanDetail::with('book')->get(); // Ambil semua data loan_detail beserta buku terkait
 
-        // Tampilkan data pengembalian ke view
-        return view('returns.index', compact('returns'));
+        return view('returns.index', compact('loanDetails'));
     }
 
     public function create()
@@ -44,5 +42,12 @@ class ReturnController extends Controller
         ]);
 
         return redirect()->route('returns.create')->with('success', 'Pengembalian berhasil disimpan.');
+    }
+
+    public function showLoans()
+    {
+        $loans = Loan::with('user')->get();
+        dd($loans);
+        return view('loans.index', compact('loans'));
     }
 }

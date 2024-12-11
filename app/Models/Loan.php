@@ -12,9 +12,16 @@ class Loan extends Model
         'loan_at',
         'return_at',
     ];
-    
+
     public function details()
     {
         return $this->hasMany(LoanDetail::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    
 }

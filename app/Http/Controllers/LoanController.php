@@ -62,4 +62,6 @@ class LoanController extends Controller
 
         return redirect()->route('loan')->with($notification);
     }
+
+    
 }

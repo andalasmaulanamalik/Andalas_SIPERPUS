@@ -1,5 +1,4 @@
 <x-app-layout>
-<!-- @hasrole('mahasiswa') -->
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Daftar Pinjaman') }}
@@ -15,31 +14,26 @@
                         <x-slot name="header">
                             <tr class="py-10">
                                 <th scope="col">#</th>
-                                <th scope="col">Judul</th>
-                                <th scope="col">Penulis</th>
-                                <th scope="col">Tahun</th>
-                                <th scope="col">Penerbit</th>
-                                <th scope="col">Kota</th>
-                                <th scope="col">Cover</th>
-                                <th scope="col">Kode Rak</th>
+                                <th scope="col">Nama Buku</th>
+                                <th scope="col">Status Pengembalian</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </x-slot>
-                        @foreach ($books as $book)
+                        @foreach ($loanDetails as $loanDetail)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $book->title }}</td>
-                                <td>{{ $book->author }}</td>
-                                <td>{{ $book->year }}</td>
-                                <td>{{ $book->publisher }}</td>
-                                <td>{{ $book->city }}</td>
+                                
+                                <td>{{ $loanDetail->book->title }}</td> <!-- Menampilkan nama buku -->
                                 <td>
-                                    <img src="{{ asset('storage/cover_buku/' . $book->cover) }}" width="100px" />
+                                    @if ($loanDetail->is_return)
+                                        Dikembalikan
+                                    @else
+                                        Belum Dikembalikan
+                                    @endif
                                 </td>
-                                <td>{{ $book->bookshelf->code }}-{{ $book->bookshelf->name }}</td>
                                 <td>
                                 <x-primary-button>
-                                    <a href="{{ route('loan.create', ['book_id' => $book->id]) }}">Pinjam</a>
+                                    <a href="{{ route('return.create') }}">Kembalikan</a>
                                 </x-primary-button>
                                 </td>
                             </tr>
@@ -50,5 +44,4 @@
             </div>
         </div>
     </div>
-    <!-- @endhasrole -->
 </x-app-layout>
