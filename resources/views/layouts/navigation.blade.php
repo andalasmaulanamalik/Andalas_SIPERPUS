@@ -15,21 +15,28 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                   
 
-                    {{-- @hasrole('mahasiswa')
-                        <x-nav-link :href="route('book')" :active="request()->routeIs('book')">
+                    @hasrole('mahasiswa')
+                        <x-nav-link :href="route('loan')" :active="request()->routeIs('loan') || request()->routeIs('loan.create')">
                             {{ __('List Buku') }}
                         </x-nav-link>
-                    @endhasrole --}}
-
-                    {{-- @hasrole('pustakawan')
-                        <x-nav-link :href="route('book')" :active="request()->routeIs('book') || request()->routeIs('book.create')">
-                            {{ __('Book') }}
+                        <x-nav-link :href="route('return')" :active="request()->routeIs('return') || request()->routeIs('return.create')">
+                            {{ __('Pengembalian Buku') }}
                         </x-nav-link>
-                    @endhasrole --}}
-                    <x-nav-link :href="route('book')" :active="request()->routeIs('book') || request()->routeIs('book.create')">
+                    @endhasrole 
+
+                    @hasrole('pustakawan')
+                        <x-nav-link :href="route('book')" :active="request()->routeIs('book') || request()->routeIs('book.create')">
+                            {{ __('Buku') }}
+                        </x-nav-link>
+                        <x-nav-link>
+                            {{ __('Peminjaman') }}
+                        </x-nav-link>
+                    @endhasrole 
+                    <!-- <x-nav-link :href="route('book')" :active="request()->routeIs('book') || request()->routeIs('book.create')">
                         {{ __('Book') }}
-                    </x-nav-link>
+                    </x-nav-link> -->
                 </div>
             </div>
 

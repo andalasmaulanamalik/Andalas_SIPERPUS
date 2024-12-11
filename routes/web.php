@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\LoanController;
+use App\Http\Controllers\ReturnController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -28,6 +30,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/books/print', [BookController::class, 'print'])->name('book.print');
     Route::get('/books/export', [BookController::class, 'export'])->name('book.export');
     Route::post('/books/import', [BookController::class, 'import'])->name('book.import');
+    
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/loans', [LoanController::class, 'index'])->name('loan');
+    Route::get('/loans/create', [LoanController::class, 'create'])->name('loan.create');
+    Route::post('/loans', [LoanController::class, 'store'])->name('loan.store');
+
+    Route::get('/returns', [ReturnController::class, 'index'])->name('return');
+    Route::get('/returns/create', [ReturnController::class, 'create'])->name('return.create');
+    Route::post('/returns', [ReturnController::class, 'store'])->name('return.store');
 });
 
 require __DIR__ . '/auth.php';
