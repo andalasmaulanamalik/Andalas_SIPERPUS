@@ -9,7 +9,7 @@ class LoanDetail extends Model
 
     protected $fillable = ['loan_id', 'book_id', 'is_return'];
 
-    // Relasi
+    
     public function loan()
     {
         return $this->belongsTo(Loan::class);

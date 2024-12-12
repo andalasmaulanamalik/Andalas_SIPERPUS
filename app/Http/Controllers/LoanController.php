@@ -18,7 +18,7 @@ class LoanController extends Controller
 
     public function create(Request $request)
     {
-        $books = Book::all(); // Semua buku untuk dropdown jika user memilih lebih dari satu buku.
+        $books = Book::all(); 
         $selectedBook = null;
 
         if ($request->has('book_id')) {
@@ -40,14 +40,14 @@ class LoanController extends Controller
             'book_ids.*' => 'exists:books,id',
         ]);
 
-        // Create Loan
+        
         $loan = Loan::create([
             'user_id' => $validated['user_id'],
             'loan_at' => $validated['loan_at'],
             'return_at' => $validated['return_at'],
         ]);
 
-        // Create Loan Details
+        
         foreach ($validated['book_ids'] as $book_id) {
             LoanDetail::create([
                 'loan_id' => $loan->id,
