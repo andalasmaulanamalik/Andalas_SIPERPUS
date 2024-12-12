@@ -14,7 +14,7 @@
                         class="mt-6 space-y-6">
                         @csrf
                         <div class="max-w-xl">
-                            <x-input-label for="user_id" value="Nama Peminjam" />
+                            <x-input-label for="user_id" value="" />
                             <x-text-input id="user_id" type="hidden" name="user_id" class="mt-1 block w-full"
                                 value="{{ auth()->user()->id }}" />
                         </div>
